@@ -1,5 +1,4 @@
 import { UserType } from '../types/User';
-import { dataUsers } from '../mocks/users';
 import { randomUUID } from 'crypto';
 
 class UserRepository{
@@ -14,7 +13,6 @@ class UserRepository{
   }
 
   userExists(email: string){
-    const exists = dataUsers.some(user => user.email === email);
 
     return exists;
   }
