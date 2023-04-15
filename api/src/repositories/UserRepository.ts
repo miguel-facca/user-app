@@ -1,20 +1,24 @@
-import { UserType } from '../types/User';
-import { randomUUID } from 'crypto';
+import { User } from '../database/entity/User';
+import { AppDataSource } from '../database/data-source';
+
+const dataSource = AppDataSource.getRepository(User);
 
 class UserRepository{
-  index(){
-    return dataUsers;
+  async index(){
+    const users = await dataSource.find();
+
+    return users;
   }
 
-  create({ name, email } : UserType){
-    const id = randomUUID();
+  async create({ id, firstName, lastName, email }: User){
+    const newUser = new User();
 
-    dataUsers.push({ id, name, email });
-  }
+    newUser.id = id;
+    newUser.email = email;
+    newUser.firstName = firstName;
+    newUser.lastName = lastName;
 
-  userExists(email: string){
-
-    return exists;
+    await dataSource.save(newUser);
   }
 }
 

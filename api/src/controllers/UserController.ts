@@ -1,25 +1,26 @@
 import { Request, Response } from 'express';
 import { userRepository } from '../repositories/UserRepository';
+import { randomUUID } from 'node:crypto';
 
 export class UserControler{
-  createUser(request:  Request, response: Response){
-    const { name, email } =  request.body;
-
-    const userExists = userRepository.userExists(email);
-
-    if(userExists){
-      return response.status(400).json({message: 'User already exists'});
-    }
-
-    userRepository.create({name, email});
-
-    response.status(201).json({name, email});
-  }
-
-  listUsers(request: Request, response: Response){
-    const users = userRepository.index();
+  async index(request: Request, response: Response){
+    const users = await userRepository.index();
 
     response.json(users);
+  }
+
+  async create(request:  Request, response: Response){
+    const { firstName, lastName, email } =  request.body;
+    const id = randomUUID();
+
+    if(firstName && lastName && email){
+      await userRepository.create({id, firstName, lastName, email});
+
+      response.status(201).json({email, message: 'has been created'});
+      return;
+    }
+
+    response.status(400).json({error: 'missing required parameter'});
   }
 }
 

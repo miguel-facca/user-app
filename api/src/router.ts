@@ -1,11 +1,7 @@
-// createUser
-// listUser
-
 import { Router } from 'express';
 import { userController } from './controllers/UserController';
 
-export const router = Router();
+export const routes = Router();
 
-router.post('/user', userController.createUser);
-router.get('/user', userController.listUsers);
-
+routes.post('/user', userController.create);
+routes.get('/user', userController.index);
