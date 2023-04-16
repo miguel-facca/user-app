@@ -1,7 +1,5 @@
-# Awesome Project Build with TypeORM
+# TO-DO
 
-Steps to run this project:
-
-1. Run `npm i` command
-2. Setup database settings inside `data-source.ts` file
-3. Run `npm start` command
+1. Implement authentication route
+2. Implement password storage and password encryption strategy
+3. Implement sessions
