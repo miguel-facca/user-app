@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { userController } from './controllers/UserController';
+import UserController from './controllers/UserController';
 
 export const routes = Router();
 
-routes.post('/user', userController.create);
-routes.get('/user', userController.index);
+routes.post('/user', UserController.create);
+routes.get('/user', UserController.index);
