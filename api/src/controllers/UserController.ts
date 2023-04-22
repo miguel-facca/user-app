@@ -3,7 +3,7 @@ import { randomUUID } from 'node:crypto';
 
 import UserRepository from '../repositories/UserRepository';
 
-export class UserControler{
+class UserControler{
   async index(request: Request, response: Response){
     const users = await UserRepository.index();
 
